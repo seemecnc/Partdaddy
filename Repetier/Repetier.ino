@@ -2,7 +2,7 @@
 
 
 
-experimental 0.91 firmware for ROSTOCK MAX
+experimental 0.91 firmware for the PARTDADDY!!!
 
 
 

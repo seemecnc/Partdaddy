@@ -115,9 +115,9 @@ If a motor turns in the wrong direction change INVERT_X_DIR or INVERT_Y_DIR.
 
 #if DELTA_DRIVE_TYPE == 0
 /** \brief Pitch in mm of drive belt. GT2 = 2mm */
-#define BELT_PITCH 2
+#define BELT_PITCH 9.525
 /** \brief Number of teeth on X, Y and Z tower pulleys */
-#define PULLEY_TEETH 20
+#define PULLEY_TEETH 12
 #define PULLEY_CIRCUMFERENCE (BELT_PITCH * PULLEY_TEETH)
 #elif DELTA_DRIVE_TYPE == 1
 /** \brief Filament pulley diameter in milimeters */
@@ -164,7 +164,7 @@ Overridden if EEPROM activated.*/
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 // for skeinforge 40 and later, steps to pull the plasic 1 mm inside the extruder, not out.  Overridden if EEPROM activated.
-#define EXT0_STEPS_PER_MM 92.4 // EZStruder
+#define EXT0_STEPS_PER_MM 500.0 // EZStruder
 // What type of sensor is used?
 // 1 is 100k thermistor (Epcos B57560G0107F000 - RepRap-Fab.org and many other)
 // 2 is 200k thermistor
@@ -619,9 +619,9 @@ on this endstop.
 //// ADVANCED SETTINGS - to tweak parameters
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
-#define X_ENABLE_ON 0
-#define Y_ENABLE_ON 0
-#define Z_ENABLE_ON 0
+#define X_ENABLE_ON 1
+#define Y_ENABLE_ON 1       //  These were all 0's and changed to 1's for big drivers J.O.
+#define Z_ENABLE_ON 1    
 
 // Disables axis when it's not being used.
 #define DISABLE_X false
@@ -632,7 +632,7 @@ on this endstop.
 // Inverting axis direction
 #define INVERT_X_DIR true
 #define INVERT_Y_DIR false
-#define INVERT_Z_DIR true
+#define INVERT_Z_DIR false
 
 //// ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
@@ -698,7 +698,7 @@ on this endstop.
 
 // Motor Current setting (Only functional when motor driver current ref pins are connected to a digital trimpot on supported boards)
 #if MOTHERBOARD==301
-#define MOTOR_CURRENT {175,175,175,200,0} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)  use 140 for xyz and 160 for the E if using Kysan motors and 175 xyz and 200 if using wantai motors
+#define MOTOR_CURRENT {0,0,0,0,0} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)  use 140 for xyz and 160 for the E if using Kysan motors and 175 xyz and 200 if using wantai motors
 #elif MOTHERBOARD==12
 #define MOTOR_CURRENT {35713,35713,35713,35713,35713} // Values 0-65535 (3D Master 35713 = ~1A)
 #endif
@@ -712,7 +712,7 @@ on this endstop.
 #if DRIVE_SYSTEM==3
 /** \brief Delta rod length
 */
-#define DELTA_DIAGONAL_ROD 269.0 // mm
+#define DELTA_DIAGONAL_ROD 1016.0 // mm
 
 
 /*  =========== Parameter essential for delta calibration ===================
@@ -745,15 +745,15 @@ on this endstop.
 
 /** \brief Horizontal offset of the universal joints on the end effector (moving platform).
 */
-#define END_EFFECTOR_HORIZONTAL_OFFSET 33.0
+#define END_EFFECTOR_HORIZONTAL_OFFSET 136.0
 
 /** \brief Horizontal offset of the universal joints on the vertical carriages.
 */
-#define CARRIAGE_HORIZONTAL_OFFSET 38.4  // Theoretical is 38.4, but actual may be slightly diff. due to plastic injection molded parts shirnkage
+#define CARRIAGE_HORIZONTAL_OFFSET 108.0  // Theoretical is 38.4, but actual may be slightly diff. due to plastic injection molded parts shirnkage
 
 /** \brief Printer radius in mm, measured from the center of the print area to the vertical smooth rod.
 */
-#define PRINTER_RADIUS 198.25
+#define PRINTER_RADIUS 835.03
 
 /**  \brief Horizontal distance bridged by the diagonal push rod when the end effector is in the center. It is pretty close to 50% of the push rod length (250 mm).
 */
@@ -800,19 +800,19 @@ Mega. Used only for nonlinear systems like delta or tuga. */
     Set value to 0 for disabled.
     Overridden if EEPROM activated.
 */
-#define MAX_INACTIVE_TIME 1800
+#define MAX_INACTIVE_TIME 0
 /** Maximum feedrate, the system allows. Higher feedrates are reduced to these values.
     The axis order in all axis related arrays is X, Y, Z
      Overridden if EEPROM activated.
     */
-#define MAX_FEEDRATE_X 300
-#define MAX_FEEDRATE_Y 300
-#define MAX_FEEDRATE_Z 300
+#define MAX_FEEDRATE_X 200.0
+#define MAX_FEEDRATE_Y 200.0
+#define MAX_FEEDRATE_Z 200.0
 
 /** Home position speed in mm/s. Overridden if EEPROM activated. */
-#define HOMING_FEEDRATE_X 120
-#define HOMING_FEEDRATE_Y 120
-#define HOMING_FEEDRATE_Z 120
+#define HOMING_FEEDRATE_X 150.0
+#define HOMING_FEEDRATE_Y 150.0
+#define HOMING_FEEDRATE_Z 150.0
 
 /** Set order of axis homing. Use HOME_ORDER_XYZ and replace XYZ with your order. */
 #define HOMING_ORDER HOME_ORDER_ZXY
@@ -861,14 +861,14 @@ If the interval at full speed is below this value, smoothing is disabled for tha
 /** \brief X, Y, Z max acceleration in mm/s^2 for printing moves or retracts. Make sure your printer can go that high!
  Overridden if EEPROM activated.
 */
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 1850  
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 1850
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 1850
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 150  
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 150
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 150
 
 /** \brief X, Y, Z max acceleration in mm/s^2 for travel moves.  Overridden if EEPROM activated.*/
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 3000
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 3000
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 3000
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 150
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 150  
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 150
 
 /** \brief Maximum allowable jerk.
 
@@ -893,8 +893,8 @@ Corner can be printed with full speed of 50 mm/s
 
 Overridden if EEPROM activated.
 */
-#define MAX_JERK 35.0    
-#define MAX_ZJERK 35.0
+#define MAX_JERK 5.0    
+#define MAX_ZJERK 5.0
 
 /** \brief Number of moves we can cache in advance.
 
