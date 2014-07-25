@@ -195,7 +195,7 @@ Overridden if EEPROM activated.*/
 #define EXT0_INVERSE true
 #define EXT0_ENABLE_PIN E0_ENABLE_PIN
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
-#define EXT0_ENABLE_ON false
+#define EXT0_ENABLE_ON true
 // The following speed settings are for skeinforge 40+ where e is the
 // length of filament pulled inside the heater. For repsnap or older
 // skeinforge use higher values.
@@ -227,7 +227,7 @@ Values for starts:
 The precise values may differ for different nozzle/resistor combination.
  Overridden if EEPROM activated.
 */
-#define EXT0_PID_INTEGRAL_DRIVE_MAX 205
+#define EXT0_PID_INTEGRAL_DRIVE_MAX 255
 /** \brief lower value for integral part
 
 The I state should converge to the exact heater output needed for the target temperature.
@@ -235,7 +235,7 @@ To prevent a long deviation from the target zone, this value limits the lower va
 A good start is 30 lower then the optimal value. You need to leave room for cooling.
  Overridden if EEPROM activated.
 */
-#define EXT0_PID_INTEGRAL_DRIVE_MIN 60
+#define EXT0_PID_INTEGRAL_DRIVE_MIN 100
 /** P-gain.  Overridden if EEPROM activated. */
 #define EXT0_PID_P   31.36
 /** I-gain. Overridden if EEPROM activated.
@@ -381,7 +381,7 @@ cog. Direct drive extruder need 0. */
 
 /** If enabled you can select the distance your filament gets retracted during a
 M140 command, after a given temperature is reached. */
-#define RETRACT_DURING_HEATUP true
+#define RETRACT_DURING_HEATUP false
 
 /** PID control only works target temperature +/- PID_CONTROL_RANGE.
 If you get much overshoot at the first temperature set, because the heater is going full power too long, you
