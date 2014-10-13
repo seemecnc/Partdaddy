@@ -1,4 +1,4 @@
-Partdaddy
+PartDaddy
 =========
 
 The PartDaddy Delta
